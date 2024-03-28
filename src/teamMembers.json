@@ -1,0 +1,15 @@
+[
+    {
+      "id": 1,
+      "name": "Lavender",
+      "image": "path/to/lavender-profile.jpg",
+      "scent": "Calming and soothing, often associated with relaxation."
+    },
+    {
+      "id": 2,
+      "name": "Citrus",
+      "image": "path/to/citrus-profile.jpg",
+      "scent": "Energizing and refreshing, brings a sense of freshness."
+    }
+  ]
+  

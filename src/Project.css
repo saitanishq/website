@@ -1,0 +1,44 @@
+/* src/Project.css */
+.shirt-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-image: url('./shirt-img.jpg'); /* Adjust path as necessary */
+    background-repeat: no-repeat;
+    background-position: center center; /* Centers the background image */
+    background-size: cover; /* Cover the container without losing aspect ratio */
+    height: 100vh; /* Use full viewport height */
+    width: 100vw; /* Use full viewport width */
+  }
+  
+  .text-overlay {
+    position: absolute;
+    color: #000; /* Change text color to black for better contrast */
+    font-weight: bold;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8); /* Change background to a more opaque white for readability */
+    padding: 10px 15px; /* Increase padding for better text framing */
+    border-radius: 5px; /* Optional: Adjust as needed for desired rounded corners */
+    width: auto; /* Adjust width as necessary, or use 'auto' */
+    margin: 0; /* Adjust margin as necessary */
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); /* Add slight shadow for depth (optional) */
+    font-size: 16px; /* Adjust font size for readability */
+    line-height: 1.5; /* Improve line spacing for better legibility */
+    border: 1px solid #ddd; /* Optional: Add subtle border for defined text block edges */
+    /* Adjust 'top' and 'left' properties to position each text overlay correctly */
+  }
+  
+  
+  .bio-ink-activated-areas {
+    top: 20%; /* Adjust based on your needs */
+    left: 50%; 
+    transform: translate(-50%, -50%); /* Adjust text position relative to its center */
+  }
+  
+  .bio-activated-shirt {
+    bottom: 20%; /* Adjust based on your needs */
+    right: 50%;
+    transform: translate(50%, 50%); /* Adjust text position relative to its center */
+  }
+  

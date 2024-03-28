@@ -1,0 +1,73 @@
+.team-member {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 50px;
+  height: 100vh;
+}
+
+.bubble {
+  position: relative;
+  background-image: url('./Teamback.jpg'); /* Ensure this is the correct path to your image */
+  background-size: cover; /* Cover the whole area */
+  background-position: center;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  animation: float 5s ease-in-out infinite; /* Apply the floating animation */
+}
+
+.bubble-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+  border-radius: 50%;
+}
+
+.overlay-text {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0); /* Initially transparent */
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+  opacity: 0; /* Initially fully transparent */
+  border-radius: 50%;
+}
+
+.name, .designation {
+  color: white;
+  margin: 0;
+  font-weight: bold;
+  transition: opacity 0.3s ease;
+  opacity: 0; /* Text is initially invisible */
+}
+
+/* Hover Effects */
+.bubble:hover .overlay-text {
+  background-color: rgba(0, 0, 0, 0.7); /* Dark background on hover */
+  opacity: 1; /* Make overlay and text visible */
+}
+
+.bubble:hover .name,
+.bubble:hover .designation {
+  opacity: 1; /* Make text visible */
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); } /* Adjust the value for a subtler or more pronounced effect */
+}
