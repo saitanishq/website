@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import logoImage from './logo.png'; 
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import Team from './Team.js';
 import Home from './Home.js';
 import Project from './Project.js';
@@ -51,6 +51,7 @@ const App = () => {
       
       {/* Routes for different pages */}
       <Routes>
+      <Route path="/" element={<Navigate to="/Home" replace />} />
         <Route path="/Home" element={<Home />} /> 
         <Route path="/Project" element={<Project />} /> 
         <Route path="/Team" element={<Team />} />
