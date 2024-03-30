@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Team from './Team.js';
 import Home from './Home.js';
 import Project from './Project.js';
+import Journey from './Journey.js';
 
 const styles = {
 navbar: {
@@ -39,10 +40,10 @@ const App = () => {
     <div>
     
       <nav style={styles.navbar}>
-        <Link style={styles.navItem} to="/Home">HOME</Link>
+        <Link style={styles.navItem} to="/Home">Home</Link>
         <Link style={styles.navItem} to="/Project">Our Project</Link>
         <Link style={styles.navItem} to="/Team">Team</Link>
-        <Link style={styles.navItem} to="/news">News</Link>
+        <Link style={styles.navItem} to="/Journey">The Journey</Link>
         <Link style={styles.navItem} to="#" onClick={(e) => {
         window.location.href = 'mailto:revivesense2023@gmail.com';
          e.preventDefault();}}>Contact Us</Link>
@@ -53,6 +54,7 @@ const App = () => {
         <Route path="/Home" element={<Home />} /> 
         <Route path="/Project" element={<Project />} /> 
         <Route path="/Team" element={<Team />} />
+        <Route path="/Journey" element={<Journey />} />
         {/* Define other routes here */}
       </Routes>
     </div>
