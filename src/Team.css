@@ -6,7 +6,27 @@
   gap: 50px;
   height: 100vh;
 }
+.team {
+  text-align: center;
+}
 
+.founders, .advisors, .institutions {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Adjust the space between the bubbles */
+}
+
+.bubble {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bubble-image {
+  width: 100px; /* Adjust based on your preference */
+  height: 100px; /* Adjust to maintain aspect ratio */
+  border-radius: 50%; /* Makes the image round */
+}
 .bubble {
   position: relative;
   background-image: url('./Teamback.jpg'); /* Ensure this is the correct path to your image */
