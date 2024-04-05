@@ -76,7 +76,6 @@ const Home = () => {
     <header style={styles.header}>
       <h1 style={styles.mainTitle}>Pioneering Olfaction Diagnostics</h1>
       <b><p style={styles.subTitle}>{typedText}</p></b>
-      <button style={styles.connectButton}>CONNECT WITH US</button>
     </header>
     </div>
   );

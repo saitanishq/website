@@ -41,4 +41,20 @@
     right: 50%;
     transform: translate(50%, 50%); /* Adjust text position relative to its center */
   }
+
+  /* Add responsive adjustments */
+@media (max-width: 768px) {
+  .text-overlay {
+    padding: 15px;
+    font-size: 14px; /* Adjust font size for smaller screens */
+  }
+}
+
+/* Additional responsive adjustments for very small screens */
+@media (max-width: 480px) {
+  .text-overlay {
+    padding: 10px;
+    font-size: 12px; /* Even smaller font for very small devices */
+  }
+}
   
