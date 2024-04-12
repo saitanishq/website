@@ -6,35 +6,46 @@ import Home from './Home.js';
 import emailjs from 'emailjs-com';
 import Project from './Project.js';
 import Journey from './Journey.js';
+import styled from 'styled-components';
 
 // Styles object
-const styles = {
-  navbar: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: '#333',
-    padding: '1rem',
-    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-    position: 'sticky',
-    top: '0',
-    zIndex: '1000',
-  },
-  logo: {
-    height: '50px',
-    marginRight: '1rem',
-  },
-  navItemsContainer: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  navItem: {
-    margin: '0 1rem',
-    color: '#fff',
-    textDecoration: 'none',
+const Navbar = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  flex-wrap: wrap;
+
+  @media (max-width: 600px) {
+    padding: 0.5rem;
   }
-};
+`;
+
+const Logo = styled.img`
+  height: 50px;
+  margin-right: 1rem;
+
+  @media (max-width: 600px) {
+    height: 40px;
+  }
+`;
+
+const NavItem = styled(Link)`
+  margin: 0 1rem;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 0;
+
+  @media (max-width: 600px) {
+    margin: 0 0.5rem;
+    padding: 8px 0;
+  }
+`;
 
 const App = () => {
   const [formVisible, setFormVisible] = useState(false);
@@ -73,11 +84,13 @@ const App = () => {
       top: '50%',
       transform: 'translate(-50%, -50%)',
       backgroundColor: '#fff',
-      padding: '30px',
-      width: '400px',
+      padding: '20px', // Reduced padding for smaller screens
+      width: '90%', // Makes the form take 90% of the screen width on smaller screens
+      maxWidth: '400px', // Ensures form does not exceed 400px in width
       borderRadius: '10px',
       boxShadow: '0 10px 20px rgba(0,0,0,0.2)',
-      zIndex: '1050'
+      zIndex: '1050',
+      overflow: 'auto', // Ensures the form is scrollable if it extends beyond the screen height
     }}>
       <form ref={formRef} onSubmit={sendEmail}>
         <h2 style={{ textAlign: 'center', color: '#333' }}>Contact Us</h2>
@@ -135,19 +148,20 @@ const App = () => {
       </form>
     </div>
   );
+  
   return (
     <Router>
       <div>
-        <nav style={styles.navbar}>
-          <Link style={styles.navItem} to="/Home">Home</Link>
-          <Link style={styles.navItem} to="/Project">Our Project</Link>
-          <Link style={styles.navItem} to="/Team">Team</Link>
-          <Link style={styles.navItem} to="/Journey">The Journey</Link>
-          <Link style={styles.navItem} to="#" onClick={(e) => {
-            showContactForm();
-            e.preventDefault();
-          }}>Contact Us</Link>
-        </nav>
+      <Navbar>
+        <NavItem to="/Home">Home</NavItem>
+        <NavItem to="/Project">Our Project</NavItem>
+        <NavItem to="/Team">Team</NavItem>
+        <NavItem to="/Journey">The Journey</NavItem>
+        <NavItem to="#" onClick={(e) => {
+          showContactForm();
+          e.preventDefault();
+        }}>Contact Us</NavItem>
+      </Navbar>
 
         <ContactForm />
 
