@@ -65,7 +65,7 @@ const Home = () => {
   const [typedText, setTypedText] = useState('');
   const [videoTime, setVideoTime] = useState(0); // State to keep track of video time
   const videoRef = useRef(null); // Ref to access the video element directly
-  const fullText = `"Unlock the potential of VOC's"`;
+  const fullText = `"vUnlock the potential of VOC's"`;
 
   useEffect(() => {
     let index = 0;
