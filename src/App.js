@@ -38,24 +38,30 @@ const styles = {
 
 const App = () => {
   const [formVisible, setFormVisible] = useState(false);
+  const [emailSent, setEmailSent] = useState(false); // State to track if email was sent
   const formRef = useRef();
 
   useEffect(() => {
-    // Initialize EmailJS
-    emailjs.init("dEeVscaf8DpmeFnmE"); // Replace "YOUR_PUBLIC_KEY" with your actual EmailJS public key
+    emailjs.init("dEeVscaf8DpmeFnmE"); // Initialize EmailJS with your public key
   }, []);
 
-  const showContactForm = () => setFormVisible(true);
+  const showContactForm = () => {
+    setFormVisible(true);
+    setEmailSent(false); // Reset email sent notification when form is opened
+  };
   const hideContactForm = () => setFormVisible(false);
 
   const sendEmail = (event) => {
     event.preventDefault();
-    emailjs.sendForm('service_36rex6b', 'template_w0bnw8e', formRef.current)
+
+    emailjs.sendForm('service_36rex6b', 'template_iwbd5x6', formRef.current, 'dEeVscaf8DpmeFnmE')
       .then(() => {
         console.log('SUCCESS!');
-        hideContactForm(); // Hide form after successful email send
+        alert('We have received your email and will get back to you soon.'); 
+        hideContactForm(); // Optionally hide form after successful email send
       }, (error) => {
         console.log('FAILED...', error);
+        alert('Failed to send email. Please try again later.'); 
       });
   };
 
@@ -77,7 +83,7 @@ const App = () => {
         <h2 style={{ textAlign: 'center', color: '#333' }}>Contact Us</h2>
         <label style={{ display: 'block', marginBottom: '10px' }}>
           Name:
-          <input type="text" name="from_name" required style={{
+          <input type="text" name="user_name" required style={{
             width: '100%',
             padding: '8px',
             margin: '6px 0 16px',
@@ -88,7 +94,7 @@ const App = () => {
         </label>
         <label style={{ display: 'block', marginBottom: '10px' }}>
           Email:
-          <input type="email" name="from_email" required style={{
+          <input type="email" name="user_email" required style={{
             width: '100%',
             padding: '8px',
             margin: '6px 0 16px',
@@ -127,7 +133,6 @@ const App = () => {
           }}>Close</button>
         </div>
       </form>
-      
     </div>
   );
   return (
