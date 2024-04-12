@@ -91,3 +91,47 @@
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-20px); } /* Adjust the value for a subtler or more pronounced effect */
 }
+
+/* Media query for tablets */
+@media (max-width: 768px) {
+  .team-member {
+    gap: 30px; /* Reduced gap to save space */
+  }
+
+  .bubble {
+    width: 150px; /* Smaller bubbles for smaller screens */
+    height: 150px;
+  }
+
+  .bubble-image {
+    width: 100%; /* Maintain relative size */
+    height: 100%;
+  }
+
+  .founders, .advisors, .institutions {
+    gap: 15px; /* Narrower gap between items */
+  }
+}
+
+/* Media query for mobile phones */
+@media (max-width: 480px) {
+  .team-member {
+    gap: 20px; /* Further reduce the gap for very small screens */
+    padding: 10px; /* Add padding to avoid touching the screen edges */
+    flex-direction: column; /* Stack items vertically to avoid crowding */
+  }
+
+  .bubble {
+    width: 120px; /* Even smaller bubbles for mobile screens */
+    height: 120px;
+  }
+
+  .founders, .advisors, .institutions {
+    flex-wrap: wrap; /* Allow items to wrap if needed */
+    justify-content: space-around; /* Evenly space wrapped items */
+  }
+
+  .overlay-text, .name, .designation {
+    font-size: 12px; /* Smaller font size for readability on small devices */
+  }
+}
