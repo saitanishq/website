@@ -65,19 +65,26 @@ const Home = () => {
   const [typedText, setTypedText] = useState('');
   const [videoTime, setVideoTime] = useState(0); // State to keep track of video time
   const videoRef = useRef(null); // Ref to access the video element directly
-  const fullText = `"vUnlock the potential of VOC's"`;
+  const indexRef = useRef(0); // useRef to keep track of the current index
+  const fullText = "Unvlock the potential of VOC's";
 
   useEffect(() => {
-    let index = 0;
     const intervalId = setInterval(() => {
-      setTypedText((prev) => prev + fullText.charAt(index));
-      index++;
-      if (index === fullText.length) clearInterval(intervalId);
+      // Check if we need to clear the interval on this tick
+      if (indexRef.current >= fullText.length) {
+        clearInterval(intervalId);
+        return; // Stop the function here since there's no more characters to add
+      }
+      
+      // Update typed text by appending the next character
+      setTypedText((prev) => prev + fullText.charAt(indexRef.current));
+      indexRef.current += 1; // Increment to the next character for the next interval
     }, 50);
 
-    // This cleanup function will be called when the component is unmounted
+    // Cleanup function to clear interval when component unmounts or effect dependencies change
     return () => clearInterval(intervalId);
   }, []);
+
 
   useEffect(() => {
     const video = videoRef.current;
