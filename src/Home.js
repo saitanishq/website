@@ -1,6 +1,7 @@
 // Home.js
 import React, { useState, useEffect } from 'react';
 import backgroundVideo from './background.mp4';
+import logo from './logo.png';
 
 const styles = {
   
@@ -8,6 +9,15 @@ subTitle: {
     color: '#333',
     fontSize: '1.5rem',
     margin: '1rem 0',
+  },
+  logo: {
+    width: '200px',  // Adjust the width as necessary
+    height: '200px', // Make height equal to the width to maintain the circle shape
+    margin: '10px 0', // Adds space around the logo
+    borderRadius: '30%', // Makes the image circular
+    backgroundColor: '#f0f0f0', // Light grey background, adjust the color as needed
+    display: 'block', // Ensures that the image is treated as a block element
+    objectFit: 'cover', // Ensures the image covers the area without distorting aspect ratio
   },
   header: {
     display: 'flex', // Enable flexbox
@@ -74,6 +84,7 @@ const Home = () => {
     Your browser does not support the video tag.
   </video>
     <header style={styles.header}>
+      <img src={logo} alt="Company Logo" style={styles.logo} />
       <h1 style={styles.mainTitle}>Pioneering Olfaction Diagnostics</h1>
       <b><p style={styles.subTitle}>{typedText}</p></b>
     </header>
