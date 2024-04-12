@@ -9,6 +9,7 @@
     "aos": "^2.3.4",
     "axios": "^1.6.7",
     "crypto-js": "^4.2.0",
+    "emailjs-com": "^3.2.0",
     "framer-motion": "^11.0.6",
     "jsqr": "^1.4.0",
     "react": "^18.2.0",

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect} from 'react';
 import logoImage from './logo.png'; 
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import Team from './Team.js';
 import Home from './Home.js';
+import emailjs from 'emailjs-com';
 import Project from './Project.js';
 import Journey from './Journey.js';
 
@@ -37,9 +38,26 @@ const styles = {
 
 const App = () => {
   const [formVisible, setFormVisible] = useState(false);
+  const formRef = useRef();
+
+  useEffect(() => {
+    // Initialize EmailJS
+    emailjs.init("dEeVscaf8DpmeFnmE"); // Replace "YOUR_PUBLIC_KEY" with your actual EmailJS public key
+  }, []);
 
   const showContactForm = () => setFormVisible(true);
   const hideContactForm = () => setFormVisible(false);
+
+  const sendEmail = (event) => {
+    event.preventDefault();
+    emailjs.sendForm('service_36rex6b', 'template_w0bnw8e', formRef.current)
+      .then(() => {
+        console.log('SUCCESS!');
+        hideContactForm(); // Hide form after successful email send
+      }, (error) => {
+        console.log('FAILED...', error);
+      });
+  };
 
   const ContactForm = () => (
     <div style={{
@@ -50,20 +68,16 @@ const App = () => {
       transform: 'translate(-50%, -50%)',
       backgroundColor: '#fff',
       padding: '30px',
-      width: '400px', // Ensures the form has a fixed width
+      width: '400px',
       borderRadius: '10px',
       boxShadow: '0 10px 20px rgba(0,0,0,0.2)',
       zIndex: '1050'
     }}>
-      <form onSubmit={(e) => {
-        e.preventDefault();
-        hideContactForm();
-        // Additional logic to send email
-      }}>
+      <form ref={formRef} onSubmit={sendEmail}>
         <h2 style={{ textAlign: 'center', color: '#333' }}>Contact Us</h2>
         <label style={{ display: 'block', marginBottom: '10px' }}>
           Name:
-          <input type="text" name="name" required style={{
+          <input type="text" name="from_name" required style={{
             width: '100%',
             padding: '8px',
             margin: '6px 0 16px',
@@ -74,7 +88,7 @@ const App = () => {
         </label>
         <label style={{ display: 'block', marginBottom: '10px' }}>
           Email:
-          <input type="email" name="email" required style={{
+          <input type="email" name="from_email" required style={{
             width: '100%',
             padding: '8px',
             margin: '6px 0 16px',
@@ -113,10 +127,9 @@ const App = () => {
           }}>Close</button>
         </div>
       </form>
+      
     </div>
   );
-  
-
   return (
     <Router>
       <div>
