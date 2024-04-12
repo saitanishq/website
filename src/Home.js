@@ -1,5 +1,5 @@
 // Home.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import backgroundVideo from './background.mp4';
 import logo from './logo.png';
 
@@ -52,22 +52,20 @@ subTitle: {
     transition: 'all 0.3s ease',
   },
   backgroundVideo: {
-    position: 'fixed', // Fixed or absolute depending on the use case
-    right: '0',
-    bottom: '0',
-    minWidth: '100%',
-    minHeight: '100%',
-    width: 'auto',
-    height: 'auto',
-    zIndex: '-1', // Ensure it stays behind other content
-    overflow: 'hidden',
+    width: '100%',
+    height: '100%',
+    position: 'fixed',
+    top: '0',
+    left: '0',
+    zIndex: '-1',
     objectFit: 'cover',
   },
 };
-
 const Home = () => {
-    const [typedText, setTypedText] = useState('');
-  const fullText = `"vUnlock the potential of VOC's"`;
+  const [typedText, setTypedText] = useState('');
+  const [videoTime, setVideoTime] = useState(0); // State to keep track of video time
+  const videoRef = useRef(null); // Ref to access the video element directly
+  const fullText = `"Unlock the potential of VOC's"`;
 
   useEffect(() => {
     let index = 0;
@@ -76,21 +74,43 @@ const Home = () => {
       index++;
       if (index === fullText.length) clearInterval(intervalId);
     }, 50);
-  
+
     // This cleanup function will be called when the component is unmounted
     return () => clearInterval(intervalId);
   }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.currentTime = videoTime;
+      video.play();
+    }
+
+    // Event listeners to update video time
+    const handlePlay = () => setVideoTime(video.currentTime);
+    const handlePause = () => setVideoTime(video.currentTime);
+
+    video.addEventListener('play', handlePlay);
+    video.addEventListener('pause', handlePause);
+
+    // Cleanup
+    return () => {
+      video.removeEventListener('play', handlePlay);
+      video.removeEventListener('pause', handlePause);
+    };
+  }, [videoTime]);
+
   return (
-    <div>  
-    <video autoPlay muted loop style={styles.backgroundVideo}>
-    <source src={backgroundVideo} type="video/mp4"/>
-    Your browser does not support the video tag.
-  </video>
-    <header style={styles.header}>
-      <img src={logo} alt="Company Logo" style={styles.logo} />
-      <h1 style={styles.mainTitle}>Pioneering Olfaction Diagnostics</h1>
-      <b><p style={styles.subTitle}>{typedText}</p></b>
-    </header>
+    <div>
+      <video ref={videoRef} autoPlay muted loop style={styles.backgroundVideo}>
+        <source src={backgroundVideo} type="video/mp4"/>
+        Your browser does not support the video tag.
+      </video>
+      <header style={styles.header}>
+        <img src={logo} alt="Company Logo" style={styles.logo} />
+        <h1 style={styles.mainTitle}>Pioneering Olfaction Diagnostics</h1>
+        <b><p style={styles.subTitle}>{typedText}</p></b>
+      </header>
     </div>
   );
 };
